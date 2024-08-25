@@ -12,9 +12,7 @@ ii.定义布尔变量：
 
 由于布尔变量可以从$\{0,1\}$中取值，因此定义布尔变量是指与颜色a的点相连的不定点。
 
-此外，还可以定义取值不能为True和取值不能为False的点。总结如下所示：
-
- <img src="C:\Users\lenovo\AppData\Roaming\Typora\typora-user-images\image-20240825010257048.png" alt="image-20240825010257048" style="zoom:50%;" />
+此外，还可以定义取值不能为True和取值不能为False的点。
 
 iii.定义基本逻辑运算：
 
@@ -41,17 +39,6 @@ c.或门：$a \vee b$
 ​	ii.如果输入全为1，输出为1
 
 ​	iii.如果输入不同，输出为1
-
- <img src="C:\Users\lenovo\AppData\Roaming\Typora\typora-user-images\image-20240825012707292.png" alt="image-20240825012707292" style="zoom:55%;" />
-
-**转化举例**
-
-$(x1 \vee \neg x2 \vee \neg x3）\wedge（\neg x1 \vee  x2 \vee x3）\wedge （x1  \vee x2 \vee x3)$ 为：
-
- <img src="C:\Users\lenovo\AppData\Roaming\Typora\typora-user-images\image-20240825014611229.png" alt="image-20240825014611229" style="zoom:39%;" /><img src="C:\Users\lenovo\AppData\Roaming\Typora\typora-user-images\image-20240825022052633.png" alt="image-20240825022052633" style="zoom:37%;" />
-
-在给出了右侧的一种着色方案后，关注边框标红的节点的取值，可以得到x1=1;x2=0;x3=1为一组解
-
 
 
 ---
