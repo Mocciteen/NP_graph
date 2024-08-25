@@ -85,11 +85,11 @@ $$
 $$
 ii.如果$x_i$=1，计数器更新如下：
 $$
-φ_4 =\mathop{\bigwedge}\limits_{i} (x_i → \mathop{\bigwedge}\limits_{m \textgreater 0} c_m^i↔ c_{m-1}^{i-1})
+φ_4 =\mathop{\bigwedge}\limits_{i} (x_i → \mathop{\bigwedge}\limits_{m > 0} c_m^i↔ c_{m-1}^{i-1})
 $$
 iii.如果$x_i$=0，计数器更新如下：
 $$
-φ_5 =\mathop{\bigwedge}\limits_{i} (¬x_i → \mathop{\bigwedge}\limits_{m } c_m^i↔ c_{m}^{i-1})
+φ_5 =\mathop{\bigwedge}\limits_{i} (¬x_i → \mathop{\bigwedge}\limits_{m} c_m^i↔ c_{m}^{i-1})
 $$
 5.总结
 
@@ -227,23 +227,31 @@ $$
 i.$s^i=\{s^i_j,j=1,...,n\},i=0,...,k$为初始字符串以及编辑后可能的副本
 
 2.自上而下定义CNF为：
+
 $$
 \operatorname{escp}(k, A, B)=\bigwedge_{i=1}^{n}\left(\mathrm{~s}_{i}^{0}:=a_{i}\right) \wedge\left(\bigvee_{j=1}^{k} \bigwedge_{i=1}^{m}\left(\mathrm{~s}_{i}^{j}:=b_{i}\right)\right) \wedge \bigwedge_{j=1}^{k} \operatorname{step}(j)
 $$
+
 即定义了该算法初始为长度为n的字符串A，在每一步step均合法时，在k步内转化为长度为m的字符串B。
 
 3.每一步操作定义为：
+
 $$
 \operatorname{step}(j)=\bigvee_{p=1 . . n-1}(\operatorname{del}(j, p) \vee \operatorname{swap}(j, p)) \vee \operatorname{del}(j, n)
 $$
+
 ​	a.删除操作：
+
 $$
 \operatorname{del}(j, p)=\left(\mathbf{s}_{p}^{j-1} \neq \varepsilon\right) \wedge \bigwedge_{i=1 . . p-1}\left(\mathrm{~s}_{i}^{j} \Leftrightarrow \mathbf{s}_{i}^{j-1}\right) \wedge \bigwedge_{i=p . n-1}\left(\mathrm{~s}_{i}^{j} \Leftrightarrow \mathrm{s}_{i+1}^{j-1}\right) \wedge\left(\mathrm{s}_{n}^{j}:=\varepsilon\right)
 $$
+
 ​	b.交换操作（对位置p和p+1处的两个符号的交换进行编码）：
+
 $$
 \operatorname{swap}(j, p)=\left(\mathbf{s}_{p+1}^{j-1} \neq \varepsilon\right) \wedge \bigwedge_{i=1 . . n, i \neq p, i \neq p+1}\left(\mathbf{s}_{i}^{j} \Leftrightarrow \mathbf{s}_{i}^{j-1}\right) \wedge\left(\mathbf{s}_{p}^{j} \Leftrightarrow \mathbf{s}_{p+1}^{j-1}\right) \wedge\left(\mathbf{s}_{p+1}^{j} \Leftrightarrow \mathbf{s}_{p}^{j-1}\right)
 $$
+
 
 
 ---
