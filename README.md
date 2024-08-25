@@ -85,7 +85,7 @@ $$
 $$
 ii.如果$x_i$=1，计数器更新如下：
 $$
-φ_4 =\mathop{\bigwedge}\limits_{i} (x_i → \mathop{\bigwedge}\limits_{m > 0} c_m^i↔ c_{m-1}^{i-1})
+φ_4 =\mathop{\bigwedge}\limits_{i} (x_i → \mathop{\bigwedge}\limits_{m>0} c_m^i↔ c_{m-1}^{i-1})
 $$
 iii.如果$x_i$=0，计数器更新如下：
 $$
@@ -179,8 +179,6 @@ $$
 
 定义：在字母表上定义得到两个序列$W = (w_1,...,w_n), V = (v_1,...,v_n)$，对于给定的k，找到一组索引使得$w'= w_{i_1} + w_{i_2}+ w_{i_k} = v' = v_{i_1} + v_{i_2}+ v_{i_k}，k \leq |w'|=l \leq m*k$
 
- <img src="C:\Users\lenovo\AppData\Roaming\Typora\typora-user-images\image-20240824215654266.png" alt="image-20240824215654266" style="zoom:49%;" />
-
 转化为SAT问题：
 
 1.变量定义：
@@ -197,7 +195,7 @@ iiii.向量$p$编码在生成结果中的位置，长度为$k+1$
 
 2.对于构造中的第j步，考虑对A所有元素的选择后句子的变化情况：
 $$
-word(j, A, u, p, id) = \mathop{\bigvee}\limits_{i=1}^{|A|} ( (id_j := i)∧ \mathop{\bigvee}\limits_{p=j}^{(j-1)*m+1} ( (p_j := p)∧(p_{j+1} := p+|ai|)∧  \mathop{\bigwedge}\limits_{x=1}^{|a_i|}(u_{p+x−1} := at(a_i, x)) ))
+word(j, A, u, p, id) = \mathop{\bigvee}\limits_{i=1}^{|A|} ( (id_j := i)∧ \mathop{\bigvee}\limits_{p=j}^{(j-1)*m+1} ( (p_j := p)∧(p_{j+1} := p+|ai|)∧  \mathop{\bigwedge}\limits_{x=1}^{|a_i|}(u_{p+x−1} := at(a_i,x)) ))
 $$
 其中：$\{j, . . . , (j − 1) ∗ m + 1\}$表示该步第一个字符可能在结果中的位置。
 
@@ -218,8 +216,6 @@ $$
 
 定义：定义在字母表下的两个句子$A=(a_1，…，a_n)$和$B=(b_1，…，b_m),n>m$，求解是否可以通过最多k次编辑操作（包括交换和删除）将A转换为B
 
- <img src="C:\Users\lenovo\AppData\Roaming\Typora\typora-user-images\image-20240824232035494.png" alt="image-20240824232035494" style="zoom:60%;" />
-
 转化为SAT问题：
 
 1.变量定义
@@ -229,7 +225,7 @@ i.$s^i=\{s^i_j,j=1,...,n\},i=0,...,k$为初始字符串以及编辑后可能的�
 2.自上而下定义CNF为：
 
 $$
-\operatorname{escp}(k, A, B)=\bigwedge_{i=1}^{n}\left(\mathrm{~s}_{i}^{0}:=a_{i}\right) \wedge\left(\bigvee_{j=1}^{k} \bigwedge_{i=1}^{m}\left(\mathrm{~s}_{i}^{j}:=b_{i}\right)\right) \wedge \bigwedge_{j=1}^{k} \operatorname{step}(j)
+escp(k, A, B)=\bigwedge_{i=1}^{n}\left(\mathrm{~s}_{i}^{0}:=a_{i}\right) \wedge\left(\bigvee_{j=1}^{k} \bigwedge_{i=1}^{m}\left(\mathrm{~s}_{i}^{j}:=b_{i}\right)\right) \wedge \bigwedge_{j=1}^{k}step(j)
 $$
 
 即定义了该算法初始为长度为n的字符串A，在每一步step均合法时，在k步内转化为长度为m的字符串B。
@@ -237,19 +233,19 @@ $$
 3.每一步操作定义为：
 
 $$
-\operatorname{step}(j)=\bigvee_{p=1 . . n-1}(\operatorname{del}(j, p) \vee \operatorname{swap}(j, p)) \vee \operatorname{del}(j, n)
+step(j)=\bigvee_{p=1 . . n-1}(del(j, p) \vee swap(j, p)) \vee del(j, n)
 $$
 
 ​	a.删除操作：
 
 $$
-\operatorname{del}(j, p)=\left(\mathbf{s}_{p}^{j-1} \neq \varepsilon\right) \wedge \bigwedge_{i=1 . . p-1}\left(\mathrm{~s}_{i}^{j} \Leftrightarrow \mathbf{s}_{i}^{j-1}\right) \wedge \bigwedge_{i=p . n-1}\left(\mathrm{~s}_{i}^{j} \Leftrightarrow \mathrm{s}_{i+1}^{j-1}\right) \wedge\left(\mathrm{s}_{n}^{j}:=\varepsilon\right)
+del(j, p)=\left(\mathbf{s}_{p}^{j-1} \neq \varepsilon\right) \wedge \bigwedge_{i=1 . . p-1}\left(\mathrm{~s}_{i}^{j} \Leftrightarrow \mathbf{s}_{i}^{j-1}\right) \wedge \bigwedge_{i=p . n-1}\left(\mathrm{~s}_{i}^{j} \Leftrightarrow \mathrm{s}_{i+1}^{j-1}\right) \wedge\left(\mathrm{s}_{n}^{j}:=\varepsilon\right)
 $$
 
 ​	b.交换操作（对位置p和p+1处的两个符号的交换进行编码）：
 
 $$
-\operatorname{swap}(j, p)=\left(\mathbf{s}_{p+1}^{j-1} \neq \varepsilon\right) \wedge \bigwedge_{i=1 . . n, i \neq p, i \neq p+1}\left(\mathbf{s}_{i}^{j} \Leftrightarrow \mathbf{s}_{i}^{j-1}\right) \wedge\left(\mathbf{s}_{p}^{j} \Leftrightarrow \mathbf{s}_{p+1}^{j-1}\right) \wedge\left(\mathbf{s}_{p+1}^{j} \Leftrightarrow \mathbf{s}_{p}^{j-1}\right)
+swap(j, p)=\left(\mathbf{s}_{p+1}^{j-1} \neq \varepsilon\right) \wedge \bigwedge_{i=1 . . n, i \neq p, i \neq p+1}\left(\mathbf{s}_{i}^{j} \Leftrightarrow \mathbf{s}_{i}^{j-1}\right) \wedge\left(\mathbf{s}_{p}^{j} \Leftrightarrow \mathbf{s}_{p+1}^{j-1}\right) \wedge\left(\mathbf{s}_{p+1}^{j} \Leftrightarrow \mathbf{s}_{p}^{j-1}\right)
 $$
 
 
