@@ -81,7 +81,7 @@ $$
 $$
 此外定义$c^0=(1,0,...,0)$，$c_k^N$=1作为初始化，因此：
 $$
-φ_3 =c_0^0∧ \mathop{\bigwedge}\limits_{i\textgreater 0} ¬c_i^0 ∧ c_k^N
+φ_3 =c_0^0∧ \mathop{\bigwedge}\limits_{i>0} ¬c_i^0 ∧ c_k^N
 $$
 ii.如果$x_i$=1，计数器更新如下：
 $$
